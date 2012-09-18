@@ -91,23 +91,23 @@ fi
 
 declare -A date_day
 date_day+=(["script"]="${segments_path}/date_day.sh")
-date_day+=(["foreground"]="colour234")
-date_day+=(["background"]="colour142")
+date_day+=(["foreground"]="colour0")
+date_day+=(["background"]="colour76")
 date_day+=(["separator"]="${separator_left_bold}")
 register_segment "date_day"
 
 declare -A date_full
 date_full+=(["script"]="${segments_path}/date_full.sh")
 date_full+=(["foreground"]="colour15")
-date_full+=(["background"]="colour9")
+date_full+=(["background"]="colour32")
 date_full+=(["separator"]="${separator_left_bold}")
 #date_full+=(["separator_fg"]="default")
 register_segment "date_full"
 
 declare -A time
 time+=(["script"]="${segments_path}/time.sh")
-time+=(["foreground"]="colour234")
-time+=(["background"]="colour148")
+time+=(["foreground"]="colour0")
+time+=(["background"]="colour76")
 time+=(["separator"]="${separator_left_bold}")
 #time+=(["separator_fg"]="default")
 register_segment "time"
