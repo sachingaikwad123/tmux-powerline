@@ -99,7 +99,7 @@ register_segment "date_day"
 declare -A date_full
 date_full+=(["script"]="${segments_path}/date_full.sh")
 date_full+=(["foreground"]="colour15")
-date_full+=(["background"]="colour32")
+date_full+=(["background"]="colour30")
 date_full+=(["separator"]="${separator_left_bold}")
 #date_full+=(["separator_fg"]="default")
 register_segment "date_full"
