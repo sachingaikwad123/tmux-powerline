@@ -1,0 +1,60 @@
+# Make it use C-]
+unbind C-b
+unbind l
+set -g prefix C-]
+bind-key C-] last-window
+
+# Reload key
+bind r source-file ~/.tmux.conf \; display-message "  Config reloaded..."
+
+set -g default-terminal "screen-256color"
+set -g history-limit 1000
+set -g base-index 1
+set -g pane-base-index 1
+set -sg escape-time 0
+
+# Rebind keys for pane management
+unbind % # Remove default binding since we’re replacing
+bind v split-window -h
+bind h split-window -v
+
+# Status bar stuff
+#set -g status-bg black
+#set -g status-fg white
+set -g status-interval 15
+set -g status-left-length 30
+set -g status-right-length 80
+
+# status-left
+# Show hostname where tmux is running
+# colour37 = cyan
+set-option -g status-left "#(~/gitrepos/tmux-powerline/status-left.sh)"
+
+# status-right
+set-option -g status-right "#(~/gitrepos/tmux-powerline/status-right.sh)"
+
+# Set window notifications
+setw -g monitor-activity on
+set -g visual-activity on
+
+# Automatically set window title
+setw -g automatic-rename on
+
+# Sane scrolling
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+# Enable mouse
+setw -g mode-mouse on
+set-option -g mouse-select-pane on
+set-option -g mouse-resize-pane on
+set-option -g mouse-select-window on
+
+# logging
+bind-key l pipe-pane -o 'cat >> ~/#W-tmux.log' \; display-message 'Toggled logging to ~/#W-tmux.log'
+
+bind-key S command-prompt -p ssh: "new-window -n %1 'ssh %1'"
+bind / command-prompt -p "man" "split-window -h 'man %%'"
+
+#### Solarized Color
+source ~/gitrepos/tmux-powerline/colors-conf/tmuxcolors.conf.putty
+

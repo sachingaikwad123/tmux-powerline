@@ -16,7 +16,7 @@ segments_path="${cwd}/${segments_dir}"
 
 declare -A tmux_session_info
 tmux_session_info+=(["script"]="${segments_path}/tmux_session_info.sh")
-tmux_session_info+=(["foreground"]="colour15")
+tmux_session_info+=(["foreground"]="colour234")
 tmux_session_info+=(["background"]="colour148")
 tmux_session_info+=(["separator"]="${separator_right_bold}")
 #tmux_session_info+=(["separator_fg"]="default")
@@ -24,8 +24,8 @@ register_segment "tmux_session_info"
 
 declare -A hostname
 hostname+=(["script"]="${segments_path}/hostname.sh")
-hostname+=(["foreground"]="colour15")
-hostname+=(["background"]="colour33")
+hostname+=(["foreground"]="colour234")
+hostname+=(["background"]="colour142")
 hostname+=(["separator"]="${separator_right_bold}")
 register_segment "hostname"
 

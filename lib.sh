@@ -3,19 +3,29 @@
 segments_dir="segments"
 declare entries
 
-if [ -n "$USE_PATCHED_FONT" -a "$USE_PATCHED_FONT" == "true" ]; then
+TERMINAL_THEME="putty"
+case "$TERMINAL_THEME" in
+    patched-font)
 	# Separators (patched font required)
 	separator_left_bold="⮂"
 	separator_left_thin="⮃"
 	separator_right_bold="⮀"
 	separator_right_thin="⮁"
-else
+        ;;
+    ubuntu)
 	# Alternative separators in the normal Unicode table.
 	separator_left_bold="◀"
 	separator_left_thin="❮"
 	separator_right_bold="▶"
 	separator_right_thin="❯"
-fi
+        ;;
+    putty)
+	separator_left_bold=""
+	separator_left_thin=""
+	separator_right_bold=""
+	separator_right_thin=""
+        ;;
+esac
 
 # Make sure that grep does not emit colors.
 export GREP_OPTIONS="--color=never"
@@ -75,7 +85,8 @@ print_status_line_left() {
 			first_segment_left=0
 		fi
 	done
-	__ui_left "colour235" "colour235" "red" "$separator_right_bold" "$prev_bg"
+        # Don't print separators in putty - no good font available
+	#__ui_left "colour235" "colour235" "red" "$separator_right_bold" "$prev_bg"
 
 	# End in a clean state.
 	echo "#[default]"
@@ -120,7 +131,11 @@ __ui_left() {
 		echo -n "#[bg=${bg_right}]"
 	fi
 
-	echo -n " #[fg=${bg_left}, bg=${separator_bg}]${separator}#[fg=${fg_right},bg=${bg_right}]"
+        if [ $separator == "" ]; then
+            echo -n " #[fg=${fg_right},bg=${bg_right}]"
+        else
+            echo -n " #[fg=${bg_left}, bg=${separator_bg}]${separator}#[fg=${fg_right},bg=${bg_right}]"
+        fi
 
 	if [ "$first_segment_left" -ne "1" ]; then
 		echo -n " "
