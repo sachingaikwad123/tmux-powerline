@@ -44,10 +44,7 @@ setw -g automatic-rename on
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 
 # Enable mouse
-setw -g mode-mouse on
-set-option -g mouse-select-pane on
-set-option -g mouse-resize-pane on
-set-option -g mouse-select-window on
+setw -g mouse on
 
 # logging
 bind-key l pipe-pane -o 'cat >> ~/#W-tmux.log' \; display-message 'Toggled logging to ~/#W-tmux.log'
